@@ -3,8 +3,15 @@ using System.Collections.Generic;
 
 namespace SPO.LexicalAnalyzer
 {
+    /// <summary>
+    /// Состояние.
+    /// </summary>
     public class State
     {
+        /// <summary>
+        /// Делегат функции перехода.
+        /// </summary>
+        /// <param name="ch">Символ перехода.</param>
         public delegate void TransactionAction(string ch);
 
         /// <summary>

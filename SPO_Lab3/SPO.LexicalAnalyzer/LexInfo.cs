@@ -1,5 +1,8 @@
 ﻿namespace SPO.LexicalAnalyzer
 {
+    /// <summary>
+    /// Информация о лексеме.
+    /// </summary>
     public class LexInfo
     {
         /// <summary>
@@ -18,10 +21,14 @@
             LexType = DefineLexType(value);
         }
 
-
+        /// <summary>
+        /// Определяет тип лексемы.
+        /// </summary>
+        /// <param name="lex">Строковое значение лексемы.</param>
+        /// <returns>Тип лексемы.</returns>
         private static LexType DefineLexType(string lex)
         {
-            if (DfaSettings.Settings.Keywords.Contains(lex)) return LexType.Keyword;
+            if (DfaSettings.Settings.Keywords.Contains(lex) || lex == DfaSettings.Settings.StatementEnd) return LexType.Keyword;
 
             if (DfaSettings.Settings.Letters.Contains(lex[0].ToString())) return LexType.Variable;
 

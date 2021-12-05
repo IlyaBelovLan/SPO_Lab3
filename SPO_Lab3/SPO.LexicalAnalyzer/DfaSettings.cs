@@ -5,84 +5,69 @@ namespace SPO.LexicalAnalyzer
 {
     public class DfaSettings
     {
+        /// <summary>
+        /// Объект настроек.
+        /// </summary>
         public static DfaSettings Settings = new DfaSettings();
 
-        private IList<string> _letters = new List<string>();
-        private IList<string> _digits = new List<string>();
-        private string _digitDelimiter;
-        private IList<string> _commentsStartEnd = new List<string>();
-        private IList<string> _compOperators = new List<string>();
-        private IList<string> _lexEnds = new List<string>();
-        private IList<string> _assignSymbols = new List<string>();
-        private IList<string> _keywords = new List<string>();
+        private readonly IList<string> _letters = new List<string>();
+        private readonly IList<string> _digits = new List<string>();
+        private readonly string _digitDelimiter;
+        private readonly IList<string> _commentsStartEnd = new List<string>();
+        private readonly IList<string> _compOperators = new List<string>();
+        private readonly IList<string> _lexEnds = new List<string>();
+        private readonly IList<string> _assignSymbols = new List<string>();
+        private readonly IList<string> _keywords = new List<string>();
+        private readonly string _statementEnd;
 
         /// <summary>
         /// Список буквенных символов.
         /// </summary>
-        public IList<string> Letters
-        {
-            get => _letters.ToList();
-        }
+        public IList<string> Letters => _letters.ToList();
 
         /// <summary>
         /// Список цифр.
         /// </summary>
-        public IList<string> Digits
-        {
-            get => _digits.ToList();
-        }
+        public IList<string> Digits => _digits.ToList();
 
         /// <summary>
         /// Разделитель десятичной и дробной части в числах.
         /// </summary>
-        public string DigitDelimiter
-        {
-            get => _digitDelimiter;
-        }
+        public string DigitDelimiter => _digitDelimiter;
 
         /// <summary>
         /// Символы начала и конца комментария.
         /// </summary>
-        public IList<string> CommentsStartEnd
-        {
-            get => _commentsStartEnd.ToList();
-        }
+        public IList<string> CommentsStartEnd => _commentsStartEnd.ToList();
 
         /// <summary>
         /// Операторы сравнения.
         /// </summary>
-        public IList<string> CompOperators
-        {
-            get => _compOperators.ToList();
-        }
+        public IList<string> CompOperators => _compOperators.ToList();
 
         /// <summary>
         /// Символы конца лексемы.
         /// </summary>
-        public IList<string> LexEnds
-        {
-            get => _lexEnds.ToList();
-        }
+        public IList<string> LexEnds => _lexEnds.ToList();
 
         /// <summary>
         /// Символы для присваиванияя.
         /// </summary>
-        public IList<string> AssignSymbols
-        {
-            get => _assignSymbols.ToList();
-        }
+        public IList<string> AssignSymbols => _assignSymbols.ToList();
 
         /// <summary>
         /// Ключевые слова.
         /// </summary>
-        public IList<string> Keywords
-        {
-            get => _keywords.ToList();
-        }
+        public IList<string> Keywords => _keywords.ToList();
 
+        /// <summary>
+        /// Символ конца выражения.
+        /// </summary>
+        public string StatementEnd => _statementEnd;
 
-        public static IList<string> TransitionSymbols = new List<string>();
-
+        /// <summary>
+        /// Конструктор настроек.
+        /// </summary>
         public DfaSettings()
         {
             //Инициализация букв.
@@ -109,7 +94,9 @@ namespace SPO.LexicalAnalyzer
             //Символы конца лексемы.
             _lexEnds.Add(" ");
             _lexEnds.Add("\n");
-            _lexEnds.Add(";");
+
+            //Символ конца выражения.
+            _statementEnd = ";";
 
             //Символы присваивания.
             _assignSymbols.Add(":");
